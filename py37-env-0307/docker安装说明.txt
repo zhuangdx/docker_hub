@@ -1,0 +1,34 @@
+## 系统需要预先安装好docker环境，可参考下面命令进行安装
+    *参考 https://docs.docker.com/install/linux/docker-ce/ubuntu/*
+    ```docker安装
+    apt-get update
+    apt-get -y install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg-agent \
+        software-properties-common
+        
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+    sudo add-apt-repository \
+       "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+       $(lsb_release -cs) \
+       stable"    
+       
+    apt-get update
+
+    apt-get -y install docker-ce docker-ce-cli containerd.io   
+
+    docker run hello-world
+    ```
+
+    #### 配置docker镜像下载加速
+    sudo mkdir -p /etc/docker
+    sudo tee /etc/docker/daemon.json <<-'EOF'
+    {
+    "registry-mirrors": ["http://hd1esep4.mirror.aliyuncs.com"]
+    }
+    EOF
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker

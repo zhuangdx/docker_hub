@@ -1,0 +1,20 @@
+# 用于docker本地构建环境
+## Dockerfile 构建镜像
+    - 创建一个临时目录，上传需要的文件 Dockerfile 及 requirements.txt
+    ```bash
+    mkdir /tmp/workspace_dt
+    cd /tmp/workspace_dt
+    docker build . -t my-py-env:v2
+    ```
+
+## 运行代码
+    ```bash
+    export myenvpath=/tmp/workspace
+    docker run -it --rm -v $myenvpath:$myenvpath my-py-env:v2 python $myenvpath/hello.py
+
+    ```
+    上述命令中 环境变量myenvpath代表本地代码路径 /tmp/workspace ，需要相应更改成阁下的目录路径
+
+
+## 以上
+或者有需要可以再联系我们
